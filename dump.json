@@ -1,0 +1,68 @@
+[
+{
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+        "name": "Klaviatura asus",
+        "description": "big",
+        "category": "keyboard",
+        "balance": 5,
+        "price": "100.00"
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 2,
+    "fields": {
+        "name": "batareika vivo",
+        "description": "dadad",
+        "category": "battery",
+        "balance": 0,
+        "price": "748.42"
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 3,
+    "fields": {
+        "name": "block 1312",
+        "description": "gdfgdc",
+        "category": "power_block",
+        "balance": 42,
+        "price": "1123.35"
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 4,
+    "fields": {
+        "name": "denejnii yachik",
+        "description": "ящик",
+        "category": "other",
+        "balance": 10,
+        "price": "4500.00"
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 5,
+    "fields": {
+        "name": "Matrix lenovo",
+        "description": "matrix",
+        "category": "matrix",
+        "balance": 4,
+        "price": "1520.63"
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 6,
+    "fields": {
+        "name": "matrixx asus",
+        "description": "ausu",
+        "category": "matrix",
+        "balance": 0,
+        "price": "15343.00"
+    }
+}
+]

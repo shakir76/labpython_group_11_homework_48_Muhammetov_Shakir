@@ -9,7 +9,7 @@ class ShopAdmin(admin.ModelAdmin):
     list_display_links = ['name']
     list_filter = ['category', ]
     search_fields = ['name', 'category', ]
-    fields = ['name', 'category', 'price', 'balance', ]
+    fields = ['name', 'category',  'price', 'balance',  'description', ]
 
 
 #
