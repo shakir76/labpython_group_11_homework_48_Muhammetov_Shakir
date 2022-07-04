@@ -16,7 +16,7 @@
                             <h5 class="card-title"><span class="fs-3">{{ product.name }}</span></h5>
                             <p>Категория: {{ product.get_category_display }}</p>
                             <p>Цена: {{ product.price }}</p>
-                            <p class="bg-warning"><a href="#"><img
+                            <p class="bg-warning"><a href="{% url "update" product.pk%}"><img
                                     src="http://s1.iconbird.com/ico/2013/6/272/w128h1281371312762PixelKit00451.png"
                                     width="25"
                                     height="25" alt="Редактирование"></a>

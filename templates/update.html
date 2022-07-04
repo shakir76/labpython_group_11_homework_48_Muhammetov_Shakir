@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Изменения{% endblock %}
+
+
+{% block content %}
+    <h1>Изменения продукта</h1>
+
+    <form action="" method="post">
+        {% include "partial/form.html" with button_text="Изменить" %}
+
+    </form>
+{% endblock %}
