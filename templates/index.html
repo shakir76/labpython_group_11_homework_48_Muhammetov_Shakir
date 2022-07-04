@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="#">Новая запись</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <h1 class="text-success">Меню</h1>
+    <div class="row">
+        {% for product in products %}
+            {% if product.balance > 0 %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card bg-warning ">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="fs-3">{{ product.name }}</span></h5>
+                            <p>Категория: {{ product.get_category_display }}</p>
+                            <p>Цена: {{ product.price }}</p>
+                            <p class="bg-warning"><a href="#"><img
+                                    src="http://s1.iconbird.com/ico/2013/6/272/w128h1281371312762PixelKit00451.png"
+                                    width="25"
+                                    height="25" alt="Редактирование"></a>
+                                <a href="#"><img src="https://mywebicons.ru/i/png/41b36a245ba5bd7dd66a600e410f853e.png"
+                                                 width="25"
+                                                 height="25" alt="Удаления"></a>
+                                <a href="#"><img
+                                        src="https://ru.seaicons.com/wp-content/uploads/2015/10/Preview-icon2.png"
+                                        width="25"
+                                        height="25" alt="Просмотр"></a></p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-STATUS_CODE = [('other', 'Разное'), ('keyboard', 'Клавиатура'), ('power_block', 'Блок питания'),
+STATUS_CODE = [('other', 'Разное'), ('keyboard', 'Клавиатура'), ('block', 'Блок питания'),
                ('matrix', 'Матрица'), ('battery', 'Батарейка'), ]
 
 
