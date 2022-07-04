@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Удаление{% endblock %}
+{% block content %}
+<form action="" method="post">
+ {% csrf_token %}
+    <h3>Удалить <i class="text-danger">{{ product.name }}</i> из корзины ?</h3>
+    <button type="submit" class="btn btn-success p-3  mb-2  " >Да</button>
+</form>
+<a href="{% url "index" %}" class="btn btn-danger p-3"  role="button"  >Нет</a>
+{% endblock %}

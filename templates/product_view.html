@@ -2,15 +2,15 @@
 {% block title %}Просмотр{% endblock %}
 {% block nav %}
     <li class="nav-item">
-        <a class="nav-link" href="#">Изменить продукт</a>
+        <a class="nav-link" href="{% url "update" product.pk %}">Изменить продукт</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Удалить продукт</a>
+        <a class="nav-link" href="{% url "delete" product.pk %}">Удалить продукт</a>
     </li>
 {% endblock %}
 {% block content %}
     <p>
-       Наиметования: {{ product.name }} Категория: {{ product.category }}
+       Наиметования: {{ product.name }} Категория: {{ product.get_category_display }}
     </p>
     <p>
       Количество : {{ product.balance }} Цена :{{ product.price }}
