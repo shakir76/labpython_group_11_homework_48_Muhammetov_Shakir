@@ -11,3 +11,6 @@ class ProductForm(forms.Form):
                                   widget=widgets.Textarea(attrs={"cols": 30, "rows": 2}))
     category = forms.ChoiceField(choices=STATUS_CODE, label="Category")
 
+
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=50, required=False, label='Найти')
