@@ -1,15 +1,24 @@
 from django import forms
-from django.forms import widgets
-from shop.models import STATUS_CODE
+from django.core.exceptions import ValidationError
+from shop.models import  Product
 
 
-class ProductForm(forms.Form):
-    name = forms.CharField(max_length=50, required=True, label="Name")
-    balance = forms.IntegerField(min_value=0, required=True, label="Balance")
-    price = forms.DecimalField(max_digits=7, decimal_places=2, label="Price")
-    description = forms.CharField(max_length=2000, required=True, label="Description",
-                                  widget=widgets.Textarea(attrs={"cols": 30, "rows": 2}))
-    category = forms.ChoiceField(choices=STATUS_CODE, label="Category")
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'balance', 'price', 'description', 'category']
+
+    def clean_balance(self):
+        balance = self.cleaned_data.get("balance")
+        if balance < 0:
+            raise ValidationError("Количество не может быть меньше  0")
+        return balance
+
+    def clean_price(self):
+        price = self.cleaned_data.get("price")
+        if price <= 0:
+            raise ValidationError("Цена не может быть меньше  или равна 0")
+        return price
 
 
 class SearchForm(forms.Form):

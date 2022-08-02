@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.utils.http import urlencode
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView
 
 from shop.forms import ProductForm, SearchForm
 from shop.models import Product, STATUS_CODE
@@ -24,7 +24,7 @@ class IndexView(ListView):
     def get_queryset(self):
         if self.search_value:
             return Product.objects.filter(
-                Q(name__icontains=self.search_value))
+                Q(name__icontains=self.search_value) | Q(category__icontains=self.search_value))
         return Product.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -44,28 +44,15 @@ class IndexView(ListView):
             return self.form.cleaned_data.get("search")
 
 
-def product_view(request, **kwargs):
-    pk = kwargs.get("pk")
-    product = get_object_or_404(Product, pk=pk)
-    return render(request, "products/product_view.html", {'product': product})
+class ProductView(DetailView):
+    template_name = "products/product_view.html"
+    model = Product
 
 
-def create_product(request):
-    if request.method == "GET":
-        form = ProductForm()
-        return render(request, "products/create.html", {'category': STATUS_CODE, "form": form})
-    else:
-        form = ProductForm(data=request.POST)
-        if form.is_valid():
-            name = form.cleaned_data.get("name")
-            category = form.cleaned_data.get("category")
-            balance = form.cleaned_data.get("balance")
-            price = form.cleaned_data.get("price")
-            description = form.cleaned_data.get("description")
-            Product.objects.create(name=name, category=category, balance=balance, price=price,
-                                   description=description)
-            return redirect("index")
-        return render("create.html", {"form": form})
+class CreateProduct(CreateView):
+    form_class = ProductForm
+    template_name = "products/create.html"
+
 
 
 def update_product(request, pk):
