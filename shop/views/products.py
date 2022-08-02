@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.utils.http import urlencode
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from shop.forms import ProductForm, SearchForm
 from shop.models import Product, STATUS_CODE
@@ -54,29 +54,10 @@ class CreateProduct(CreateView):
     template_name = "products/create.html"
 
 
-
-def update_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == "GET":
-        form = ProductForm(initial={
-            "name": product.name,
-            "category": product.category,
-            "balance": product.balance,
-            "description": product.description,
-            "price": product.price
-        })
-        return render(request, "products/update.html", {'form': form, 'category': STATUS_CODE})
-    else:
-        form = ProductForm(data=request.POST)
-        if form.is_valid():
-            product.name = form.cleaned_data.get("name")
-            product.category = form.cleaned_data.get("category")
-            product.balance = form.cleaned_data.get("balance")
-            product.price = form.cleaned_data.get("price")
-            product.description = form.cleaned_data.get("description")
-            product.save()
-            return redirect("view", pk=product.pk)
-        return render(request, "products/update.html", {'form': form, 'category': STATUS_CODE})
+class UpdateProduct(UpdateView):
+    form_class = ProductForm
+    template_name = 'products/update.html'
+    model = Product
 
 
 def delete_product(request, pk):

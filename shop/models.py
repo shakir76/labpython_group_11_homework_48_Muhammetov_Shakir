@@ -2,6 +2,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
 
 STATUS_CODE = [('other', 'Разное'), ('keyboard', 'Клавиатура'), ('block', 'Блок питания'),
                ('matrix', 'Матрица'), ('battery', 'Батарейка'), ]
@@ -16,6 +17,9 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.id}. {self.name}: {self.category}"
+
+    def get_absolute_url(self):
+        return reverse('view', kwargs={"pk": self.pk})
 
     class Meta:
         db_table = "Product"
