@@ -2,8 +2,9 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
+from django.urls import reverse_lazy
 from django.utils.http import urlencode
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from shop.forms import ProductForm, SearchForm
 from shop.models import Product, STATUS_CODE
@@ -60,10 +61,7 @@ class UpdateProduct(UpdateView):
     model = Product
 
 
-def delete_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == "GET":
-        return render(request, "products/delete.html", {"product": product})
-    else:
-        product.delete()
-        return redirect("index")
+class DeleteProduct(DeleteView):
+    model = Product
+    template_name = 'products/delete.html'
+    success_url = reverse_lazy('index')
