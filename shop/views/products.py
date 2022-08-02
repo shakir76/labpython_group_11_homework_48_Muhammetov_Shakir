@@ -8,19 +8,19 @@ from shop.models import Product, STATUS_CODE
 def index(request):
     product = Product.objects.order_by("category")
     context = {"products": product}
-    return render(request, "index.html", context)
+    return render(request, "products/index.html", context)
 
 
 def product_view(request, **kwargs):
     pk = kwargs.get("pk")
     product = get_object_or_404(Product, pk=pk)
-    return render(request, "product_view.html", {'product': product})
+    return render(request, "products/product_view.html", {'product': product})
 
 
 def create_product(request):
     if request.method == "GET":
         form = ProductForm()
-        return render(request, "create.html", {'category': STATUS_CODE, "form": form})
+        return render(request, "products/create.html", {'category': STATUS_CODE, "form": form})
     else:
         form = ProductForm(data=request.POST)
         if form.is_valid():
@@ -45,7 +45,7 @@ def update_product(request, pk):
             "description": product.description,
             "price": product.price
         })
-        return render(request, "update.html", {'form': form, 'category': STATUS_CODE})
+        return render(request, "products/update.html", {'form': form, 'category': STATUS_CODE})
     else:
         form = ProductForm(data=request.POST)
         if form.is_valid():
@@ -56,13 +56,13 @@ def update_product(request, pk):
             product.description = form.cleaned_data.get("description")
             product.save()
             return redirect("view", pk=product.pk)
-        return render(request, "update.html", {'form': form, 'category': STATUS_CODE})
+        return render(request, "products/update.html", {'form': form, 'category': STATUS_CODE})
 
 
 def delete_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == "GET":
-        return render(request, "delete.html", {"product": product})
+        return render(request, "products/delete.html", {"product": product})
     else:
         product.delete()
         return redirect("index")

@@ -1,6 +1,6 @@
-from django.urls import path, include
+from django.urls import path
 
-from shop.views import index, product_view, create_product, update_product, delete_product
+from shop.views.products import index, product_view, create_product, update_product, delete_product
 
 urlpatterns = [
     path('', index, name="index"),
