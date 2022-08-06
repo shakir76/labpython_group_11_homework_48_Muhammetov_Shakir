@@ -42,3 +42,36 @@ class ProductInCart(models.Model):
 
     def total_product(self):
         return self.balance * self.product.price
+
+
+class Order(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Имя")
+    phone = models.CharField(max_length=50, verbose_name="Телефон")
+    address = models.CharField(max_length=50, verbose_name="Адрес")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    products = models.ManyToManyField('shop.Product', related_name='orders', verbose_name='Товары',
+                                      through='shop.OrderProduct', through_fields=['order', 'product'])
+
+    def __str__(self):
+        return f'{self.name} - {self.phone}'
+
+    class Meta:
+        db_table = "Order"
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
+
+class OrderProduct(models.Model):
+    product = models.ForeignKey("shop.Product", on_delete=models.CASCADE, related_name="order_products",
+                                verbose_name="Продукт")
+    order = models.ForeignKey("shop.Order", on_delete=models.CASCADE, related_name="order_products",
+                              verbose_name="Продукт")
+    balance = models.PositiveIntegerField(verbose_name="Количество")
+
+    def __str__(self):
+        return f'{self.product.name} - {self.order.name}'
+
+    class Meta:
+        db_table = "Order_Product"
+        verbose_name = "Товар в заказе"
+        verbose_name_plural = "Товары в заказе"
