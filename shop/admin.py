@@ -17,7 +17,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display_links = ['name']
     list_filter = ['name', ]
     search_fields = ['name', ]
-    fields = ['name', 'phone', 'address', 'created_at',]
+    fields = ['name', 'phone', 'address']
 
 
 #

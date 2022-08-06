@@ -7,8 +7,8 @@ from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from shop.forms import ProductForm, SearchForm, ProductAddForm
-from shop.models import Product, ProductInCart
+from shop.forms import ProductForm, SearchForm, ProductAddForm, OrderForm
+from shop.models import Product, ProductInCart, Order, OrderProduct
 
 
 class IndexView(ListView):
@@ -103,8 +103,8 @@ class CartView(ListView):
             sum_product.append(i.balance * i.product.price)
         sum_product = sum(sum_product)
         context['sum_product'] = sum_product
+        context['form'] = OrderForm()
         return context
-
 
 
 class DeleteCart(DeleteView):
@@ -115,4 +115,17 @@ class DeleteCart(DeleteView):
         return self.delete(request, *args, *kwargs)
 
 
+class OrderCreateView(CreateView):
+    model = Order
+    form_class = OrderForm
+    success_url = reverse_lazy('index')
 
+    def form_valid(self, form):
+        order = form.save()
+
+        for i in ProductInCart.objects.all():
+            OrderProduct.objects.create(product=i.product, balance=i.balance, order=order)
+            i.product.balance -= i.balance
+            i.product.save()
+            i.delete()
+        return HttpResponseRedirect(self.success_url)

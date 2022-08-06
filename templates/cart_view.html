@@ -25,4 +25,7 @@
         </tbody>
     </table>
     <H5> Общая сумма:{{ sum_product }} </H5>
+    <form action="{% url 'order_create' %}" method="post">
+        {% include 'partial/form.html' with button_text='Заказать' %}
+    </form>
 {% endblock %}
