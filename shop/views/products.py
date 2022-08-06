@@ -75,7 +75,6 @@ class ProductAdd(CreateView):
     def form_valid(self, form):
         product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
         qty = form.cleaned_data.get('balance')
-        print(product, qty)
         if qty > product.balance:
             pass
         else:
