@@ -28,9 +28,9 @@ class Product(models.Model):
 
 
 class ProductInCart(models.Model):
-    product = models.ForeignKey("shop.Product", on_delete=models.CASCADE,  related_name="product",
+    product = models.ForeignKey("shop.Product", on_delete=models.CASCADE, related_name="product",
                                 verbose_name="Продукт")
-    balance = models.IntegerField(validators=[MinValueValidator(0)], default=1, verbose_name="Количество",)
+    balance = models.IntegerField(validators=[MinValueValidator(0)], default=1, verbose_name="Количество", )
 
     def __str__(self):
         return f"{self.id}. {self.product}: {self.balance}"
@@ -40,4 +40,5 @@ class ProductInCart(models.Model):
         verbose_name = "Продукт в Корзине"
         verbose_name_plural = "Продукты в Корзине"
 
-
+    def total_product(self):
+        return self.balance * self.product.price

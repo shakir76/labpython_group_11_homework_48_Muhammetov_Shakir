@@ -101,5 +101,18 @@ class CartView(ListView):
         sum_product = []
         for i in ProductInCart.objects.all():
             sum_product.append(i.balance * i.product.price)
+        sum_product = sum(sum_product)
         context['sum_product'] = sum_product
         return context
+
+
+
+class DeleteCart(DeleteView):
+    model = ProductInCart
+    success_url = reverse_lazy('cart')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, *kwargs)
+
+
+

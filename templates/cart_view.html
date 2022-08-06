@@ -9,6 +9,7 @@
             <th scope="col">Количество</th>
             <th scope="col">Цена</th>
             <th scope="col">Сумма</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -17,11 +18,11 @@
                 <td>{{ i.product.name }}</td>
                 <td>{{ i.balance }}</td>
                 <td>{{ i.product.price }}</td>
-                <td>{{ sum_product }}</td>
-
+                <td>{{ i.total_product }}</td>
+                <td><a href="{% url "cart_delete" i.pk %}">Удалить</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <H5> Общая сумма: </H5>
+    <H5> Общая сумма:{{ sum_product }} </H5>
 {% endblock %}
