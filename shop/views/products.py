@@ -90,8 +90,16 @@ class ProductAdd(CreateView):
     def get_success_url(self):
         return reverse('index')
 
+
 class CartView(ListView):
     model = ProductInCart
     template_name = 'cart_view.html'
     context_object_name = 'cart'
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
+        sum_product = []
+        for i in ProductInCart.objects.all():
+            sum_product.append(i.balance * i.product.price)
+        context['sum_product'] = sum_product
+        return context

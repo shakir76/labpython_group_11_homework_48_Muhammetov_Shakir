@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <H2>Корзина</H2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Наименования</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Сумма</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in cart %}
+            <tr>
+                <td>{{ i.product.name }}</td>
+                <td>{{ i.balance }}</td>
+                <td>{{ i.product.price }}</td>
+                <td>{{ sum_product }}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <H5> Общая сумма: </H5>
+{% endblock %}
