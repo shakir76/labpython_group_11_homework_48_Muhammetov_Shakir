@@ -1,0 +1,5 @@
+<form action='{% url 'add_cart' product.pk %}' method="post">
+    {% csrf_token %}
+    <input type="number" name="balance">
+    <button class="btn">Добавить в корзину</button>
+</form>

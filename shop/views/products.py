@@ -1,13 +1,14 @@
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from shop.forms import ProductForm, SearchForm
-from shop.models import Product, STATUS_CODE
+from shop.forms import ProductForm, SearchForm, ProductAddForm
+from shop.models import Product, ProductInCart
 
 
 class IndexView(ListView):
@@ -65,3 +66,32 @@ class DeleteProduct(DeleteView):
     model = Product
     template_name = 'products/delete.html'
     success_url = reverse_lazy('index')
+
+
+class ProductAdd(CreateView):
+    form_class = ProductAddForm
+    model = ProductInCart
+
+    def form_valid(self, form):
+        product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
+        qty = form.cleaned_data.get('balance')
+        print(product, qty)
+        if qty > product.balance:
+            pass
+        else:
+            try:
+                cart = ProductInCart.objects.get(product=product)
+                cart.balance += qty
+                cart.save()
+            except ProductInCart.DoesNotExist:
+                ProductInCart.objects.create(product=product, balance=qty)
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('index')
+
+class CartView(ListView):
+    model = ProductInCart
+    template_name = 'cart_view.html'
+    context_object_name = 'cart'
+

@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><span class="fs-3">{{ product.name }}</span></h5>
                             <p>Категория: {{ product.get_category_display }}</p>
-                            <p>Цена: {{ product.price }}</p>
+                            <p>Количество: {{ product.balance }}  Цена: {{ product.price }}</p>
                             <p class="bg-warning"><a href="{% url "update" product.pk%}"><img
                                     src="http://s1.iconbird.com/ico/2013/6/272/w128h1281371312762PixelKit00451.png"
                                     width="25"
@@ -27,7 +27,9 @@
                                 <a href="{% url "view" product.pk %}"><img
                                         src="https://ru.seaicons.com/wp-content/uploads/2015/10/Preview-icon2.png"
                                         width="25"
-                                        height="25" alt="Просмотр"></a></p>
+                                        height="25" alt="Просмотр"></a>
+                            </p>
+                            <p>{% include 'partial/add_cart.html' %}</p>
                         </div>
                     </div>
                 </div>
