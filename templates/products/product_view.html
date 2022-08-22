@@ -1,23 +1,25 @@
 {% extends "base.html" %}
 {% block title %}Просмотр{% endblock %}
 {% block nav %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url "shop:update" product.pk %}">Изменить продукт</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url "shop:delete" product.pk %}">Удалить продукт</a>
-    </li>
+    {% if request.user.is_authenticated %
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "shop:update" product.pk %}">Изменить продукт</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "shop:delete" product.pk %}">Удалить продукт</a>
+        </li>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <p>
-       Наименования: {{ product.name }} Категория: {{ product.get_category_display }}
+        Наименования: {{ product.name }} Категория: {{ product.get_category_display }}
     </p>
     <p>
-      Количество : {{ product.balance }} Цена :{{ product.price }}
+        Количество : {{ product.balance }} Цена :{{ product.price }}
     </p>
     <p>
-    Описания:
+        Описания:
         {{ product.description }}
     </p>
-     <p>{% include 'partial/add_cart.html' %}</p>
+    <p>{% include 'partial/add_cart.html' %}</p>
 {% endblock %}

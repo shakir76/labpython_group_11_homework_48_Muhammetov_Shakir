@@ -1,142 +1,198 @@
 [
 {
-    "model": "shop.product",
-    "pk": 19,
-    "fields": {
-        "name": "product2",
-        "description": "asd",
-        "category": "battery",
-        "balance": 4,
-        "price": "123.00"
-    }
+  "model": "shop.product",
+  "pk": 19,
+  "fields": {
+    "name": "product2",
+    "description": "asd",
+    "category": "battery",
+    "balance": 0,
+    "price": "123.00"
+  }
 },
 {
-    "model": "shop.product",
-    "pk": 20,
-    "fields": {
-        "name": "product3",
-        "description": "13dad",
-        "category": "block",
-        "balance": 3,
-        "price": "12312.00"
-    }
+  "model": "shop.product",
+  "pk": 20,
+  "fields": {
+    "name": "product3",
+    "description": "13dad",
+    "category": "block",
+    "balance": 2,
+    "price": "12312.00"
+  }
 },
 {
-    "model": "shop.product",
-    "pk": 21,
-    "fields": {
-        "name": "product1",
-        "description": "asd",
-        "category": "battery",
-        "balance": 2,
-        "price": "0.03"
-    }
+  "model": "shop.product",
+  "pk": 21,
+  "fields": {
+    "name": "product1",
+    "description": "asd",
+    "category": "battery",
+    "balance": 1,
+    "price": "0.03"
+  }
 },
 {
-    "model": "shop.product",
-    "pk": 22,
-    "fields": {
-        "name": "block 12",
-        "description": "123asd",
-        "category": "block",
-        "balance": 5,
-        "price": "5214.00"
-    }
+  "model": "shop.product",
+  "pk": 22,
+  "fields": {
+    "name": "block 12",
+    "description": "123asd",
+    "category": "block",
+    "balance": 4,
+    "price": "5214.00"
+  }
 },
 {
-    "model": "shop.product",
-    "pk": 23,
-    "fields": {
-        "name": "product4",
-        "description": "dsfad",
-        "category": "matrix",
-        "balance": 6,
-        "price": "3212.00"
-    }
+  "model": "shop.product",
+  "pk": 23,
+  "fields": {
+    "name": "product4",
+    "description": "dsfad",
+    "category": "matrix",
+    "balance": 6,
+    "price": "3212.00"
+  }
 },
 {
-    "model": "shop.product",
-    "pk": 24,
-    "fields": {
-        "name": "Enhancement",
-        "description": "ddqww",
-        "category": "other",
-        "balance": 6,
-        "price": "56456.00"
-    }
+  "model": "shop.product",
+  "pk": 24,
+  "fields": {
+    "name": "Enhancement",
+    "description": "ddqww",
+    "category": "other",
+    "balance": 6,
+    "price": "56456.00"
+  }
 },
 {
-    "model": "shop.order",
-    "pk": 1,
-    "fields": {
-        "name": "Белосан Зэнер Исмазовна",
-        "phone": "awe",
-        "address": "eqw",
-        "created_at": "2022-08-06T09:40:03.138Z"
-    }
+  "model": "shop.order",
+  "pk": 1,
+  "fields": {
+    "name": "Белосан Зэнер Исмазовна",
+    "phone": "awe",
+    "address": "eqw",
+    "created_at": "2022-08-06T09:40:03.138Z"
+  }
 },
 {
-    "model": "shop.order",
-    "pk": 2,
-    "fields": {
-        "name": "Белосан Зэнер Исмазовна",
-        "phone": "sad",
-        "address": "asd",
-        "created_at": "2022-08-06T09:41:27.159Z"
-    }
+  "model": "shop.order",
+  "pk": 2,
+  "fields": {
+    "name": "Белосан Зэнер Исмазовна",
+    "phone": "sad",
+    "address": "asd",
+    "created_at": "2022-08-06T09:41:27.159Z"
+  }
 },
 {
-    "model": "shop.orderproduct",
-    "pk": 1,
-    "fields": {
-        "product": 19,
-        "order": 1,
-        "balance": 2
-    }
+  "model": "shop.order",
+  "pk": 3,
+  "fields": {
+    "name": "Белосан Зэнер Исмазовна",
+    "phone": "+996703783736",
+    "address": "фыв",
+    "created_at": "2022-08-22T08:35:56.109Z"
+  }
 },
 {
-    "model": "shop.orderproduct",
-    "pk": 2,
-    "fields": {
-        "product": 20,
-        "order": 1,
-        "balance": 1
-    }
+  "model": "shop.order",
+  "pk": 4,
+  "fields": {
+    "name": "block 131",
+    "phone": "1",
+    "address": "фыв",
+    "created_at": "2022-08-22T08:38:02.069Z"
+  }
 },
 {
-    "model": "shop.orderproduct",
-    "pk": 3,
-    "fields": {
-        "product": 21,
-        "order": 1,
-        "balance": 3
-    }
+  "model": "shop.orderproduct",
+  "pk": 1,
+  "fields": {
+    "product": 19,
+    "order": 1,
+    "balance": 2
+  }
 },
 {
-    "model": "shop.orderproduct",
-    "pk": 4,
-    "fields": {
-        "product": 19,
-        "order": 2,
-        "balance": 1
-    }
+  "model": "shop.orderproduct",
+  "pk": 2,
+  "fields": {
+    "product": 20,
+    "order": 1,
+    "balance": 1
+  }
 },
 {
-    "model": "shop.orderproduct",
-    "pk": 5,
-    "fields": {
-        "product": 20,
-        "order": 2,
-        "balance": 2
-    }
+  "model": "shop.orderproduct",
+  "pk": 3,
+  "fields": {
+    "product": 21,
+    "order": 1,
+    "balance": 3
+  }
 },
 {
-    "model": "shop.orderproduct",
-    "pk": 6,
-    "fields": {
-        "product": 21,
-        "order": 2,
-        "balance": 3
-    }
+  "model": "shop.orderproduct",
+  "pk": 4,
+  "fields": {
+    "product": 19,
+    "order": 2,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 5,
+  "fields": {
+    "product": 20,
+    "order": 2,
+    "balance": 2
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 6,
+  "fields": {
+    "product": 21,
+    "order": 2,
+    "balance": 3
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 7,
+  "fields": {
+    "product": 21,
+    "order": 3,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 8,
+  "fields": {
+    "product": 19,
+    "order": 3,
+    "balance": 4
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 9,
+  "fields": {
+    "product": 22,
+    "order": 4,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 10,
+  "fields": {
+    "product": 20,
+    "order": 4,
+    "balance": 1
+  }
 }
 ]

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 {% block nav %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url "shop:create" %}">Добавить продукт</a>
-    </li>
+    {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "shop:create" %}">Добавить продукт</a>
+        </li>
+    {% endif %}
 {% endblock %}
 {% block content %}
-        {% include "partial/simple_search.html" %}
+    {% include "partial/simple_search.html" %}
     <h1 class="text-success">Меню</h1>
     <div class="row">
         {% for product in products %}
@@ -16,26 +18,30 @@
                         <div class="card-body">
                             <h5 class="card-title"><span class="fs-3">{{ product.name }}</span></h5>
                             <p>Категория: {{ product.get_category_display }}</p>
-                            <p>Количество: {{ product.balance }}  Цена: {{ product.price }}</p>
-                            <p class="bg-warning"><a href="{% url "shop:update" product.pk%}"><img
+                            <p>Количество: {{ product.balance }} Цена: {{ product.price }}</p>
+                            {% if request.user.is_authenticated %}
+                                <p class="bg-warning"><a href="{% url "shop:update" product.pk %}"><img
                                     src="http://s1.iconbird.com/ico/2013/6/272/w128h1281371312762PixelKit00451.png"
                                     width="25"
                                     height="25" alt="Редактирование"></a>
-                                <a href="{% url "shop:delete" product.pk %}"><img src="https://mywebicons.ru/i/png/41b36a245ba5bd7dd66a600e410f853e.png"
-                                                 width="25"
-                                                 height="25" alt="Удаления"></a>
-                                <a href="{% url "shop:view" product.pk %}"><img
-                                        src="https://ru.seaicons.com/wp-content/uploads/2015/10/Preview-icon2.png"
+                                <a href="{% url "shop:delete" product.pk %}"><img
+                                        src="https://mywebicons.ru/i/png/41b36a245ba5bd7dd66a600e410f853e.png"
                                         width="25"
-                                        height="25" alt="Просмотр"></a>
-                            </p>
+                                        height="25" alt="Удаления"></a>
+                                </p>
+                            {% endif %}
+                            <p><a href="{% url "shop:view" product.pk %}"><img
+                                    src="https://ru.seaicons.com/wp-content/uploads/2015/10/Preview-icon2.png"
+                                    width="25"
+                                    height="25" alt="Просмотр"></a></p>
+
                             <p>{% include 'partial/add_cart.html' %}</p>
                         </div>
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
-            {% if is_paginated %}
+        {% if is_paginated %}
             {% include "partial/pagination.html" %}
         {% endif %}
     </div>

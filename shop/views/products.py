@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
@@ -51,21 +52,33 @@ class ProductView(DetailView):
     model = Product
 
 
-class CreateProduct(CreateView):
+class CreateProduct(PermissionRequiredMixin, CreateView):
     form_class = ProductForm
     template_name = "products/create.html"
 
+    def has_permission(self):
+        return self.request.user.is_superuser or 'moderators' in self.request.user.groups.all().values_list('name',
+                                                                                                            flat=True)
 
-class UpdateProduct(UpdateView):
+
+class UpdateProduct(PermissionRequiredMixin, UpdateView):
     form_class = ProductForm
     template_name = 'products/update.html'
     model = Product
 
+    def has_permission(self):
+        return self.request.user.is_superuser or 'moderators' in self.request.user.groups.all().values_list('name',
+                                                                                                            flat=True)
 
-class DeleteProduct(DeleteView):
+
+class DeleteProduct(PermissionRequiredMixin, DeleteView):
     model = Product
     template_name = 'products/delete.html'
     success_url = reverse_lazy('shop:index')
+
+    def has_permission(self):
+        return self.request.user.is_superuser or 'moderators' in self.request.user.groups.all().values_list('name',
+                                                                                                            flat=True)
 
 
 class ProductAdd(CreateView):
