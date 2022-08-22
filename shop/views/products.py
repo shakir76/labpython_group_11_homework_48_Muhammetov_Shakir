@@ -83,7 +83,6 @@ class DeleteProduct(PermissionRequiredMixin, DeleteView):
 
 class ProductAdd(CreateView):
     form_class = ProductAddForm
-    model = ProductInCart
 
     def form_valid(self, form):
         product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
@@ -91,16 +90,19 @@ class ProductAdd(CreateView):
         if qty > product.balance:
             pass
         else:
-            try:
-                cart = ProductInCart.objects.get(product=product)
-                cart.balance += qty
-                if product.balance < cart.balance:
-                    cart.balance -= qty
-                    cart.save()
+            if not self.request.session.get('cart'):
+                self.request.session['cart'] = [{'name': product.pk, 'qty': qty}]
+            else:
+                cart = self.request.session.get('cart')
+                if next((x for x in cart if x["name"] == product.pk), None):
+                    for a in cart:
+                        if a['name'] == product.pk:
+                            a['qty'] += qty
+                            if a['qty'] > product.balance:
+                                a['qty'] -= qty
                 else:
-                    cart.save()
-            except ProductInCart.DoesNotExist:
-                ProductInCart.objects.create(product=product, balance=qty)
+                    cart.append({'name': product.pk, 'qty': qty})
+                self.request.session['cart'] = cart
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
@@ -108,15 +110,26 @@ class ProductAdd(CreateView):
 
 
 class CartView(ListView):
-    model = ProductInCart
     template_name = 'cart_view.html'
     context_object_name = 'cart'
+
+    def get_queryset(self):
+        cart = self.request.session.get('cart')
+        context = []
+        if not cart:
+            return context
+        for a in cart:
+            product = get_object_or_404(Product, pk=a['name'])
+            product.balance = a['qty']
+            context.append(product)
+        return context
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
         sum_product = []
-        for i in ProductInCart.objects.all():
-            sum_product.append(i.balance * i.product.price)
+        for i in context['cart']:
+            sum_product.append(i.balance * i.price)
+        context['sums'] = sum_product
         sum_product = sum(sum_product)
         context['sum_product'] = sum_product
         context['form'] = OrderForm()
@@ -124,11 +137,19 @@ class CartView(ListView):
 
 
 class DeleteCart(DeleteView):
-    model = ProductInCart
-    success_url = reverse_lazy('cart')
+    success_url = reverse_lazy('shop:cart')
 
     def get(self, request, *args, **kwargs):
-        return self.delete(request, *args, *kwargs)
+        cart = self.request.session.get('cart')
+        pk = self.kwargs.get('pk')
+        for a in cart:
+            if pk == a['name']:
+                cart.remove(a)
+        self.request.session['cart'] = cart
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('shop:cart')
 
 
 class OrderCreateView(CreateView):
@@ -139,9 +160,22 @@ class OrderCreateView(CreateView):
     def form_valid(self, form):
         order = form.save()
 
-        for i in ProductInCart.objects.all():
-            OrderProduct.objects.create(product=i.product, balance=i.balance, order=order)
-            i.product.balance -= i.balance
-            i.product.save()
-            i.delete()
+        cart = self.request.session.get('cart')
+        context = []
+        if not cart:
+            return context
+        for a in cart:
+            product = get_object_or_404(Product, pk=a['name'])
+            product.balance = a['qty']
+            context.append(product)
+
+        for i in context:
+            OrderProduct.objects.create(product=i, balance=i.balance, order=order)
+            for a in cart:
+                if i.pk == a['name']:
+                    cart.remove(a)
+                product = get_object_or_404(Product, pk=a['name'])
+                product.balance -= i.balance
+                product.save()
+        self.request.session['cart'] = cart
         return HttpResponseRedirect(self.success_url)

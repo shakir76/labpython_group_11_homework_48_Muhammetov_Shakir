@@ -15,10 +15,13 @@
         <tbody>
         {% for i in cart %}
             <tr>
-                <td>{{ i.product.name }}</td>
+                <td>{{ i.name }}</td>
                 <td>{{ i.balance }}</td>
-                <td>{{ i.product.price }}</td>
-                <td>{{ i.total_product }}</td>
+                <td>{{ i.price }}</td>
+                {% for a in sums %}
+{#                    {% if  %}#}
+                    <td>{{ a }}</td>
+                {% endfor %}
                 <td><a href="{% url "shop:cart_delete" i.pk %}">Удалить</a></td>
             </tr>
         {% endfor %}
