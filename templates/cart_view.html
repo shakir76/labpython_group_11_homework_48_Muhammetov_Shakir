@@ -19,8 +19,9 @@
                 <td>{{ i.balance }}</td>
                 <td>{{ i.price }}</td>
                 {% for a in sums %}
-{#                    {% if  %}#}
-                    <td>{{ a }}</td>
+                    {% if a.product_id == i.pk  %}
+                    <td>{{ a.sum_price }}</td>
+                    {% endif %}
                 {% endfor %}
                 <td><a href="{% url "shop:cart_delete" i.pk %}">Удалить</a></td>
             </tr>

@@ -127,9 +127,12 @@ class CartView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
         sum_product = []
+        susm = []
         for i in context['cart']:
             sum_product.append(i.balance * i.price)
-        context['sums'] = sum_product
+            susm.append({'product_id': i.pk, 'sum_price': (i.balance * i.price)})
+        print(susm)
+        context['sums'] = susm
         sum_product = sum(sum_product)
         context['sum_product'] = sum_product
         context['form'] = OrderForm()
