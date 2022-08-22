@@ -19,7 +19,7 @@ class Product(models.Model):
         return f"{self.id}. {self.name}: {self.category}"
 
     def get_absolute_url(self):
-        return reverse('view', kwargs={"pk": self.pk})
+        return reverse('shop:view', kwargs={"pk": self.pk})
 
     class Meta:
         db_table = "Product"

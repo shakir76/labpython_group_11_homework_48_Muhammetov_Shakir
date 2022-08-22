@@ -20,6 +20,7 @@ lib/
 .vscode/
 lib64/
 parts/
+uploads/
 sdist/
 var/
 wheels/

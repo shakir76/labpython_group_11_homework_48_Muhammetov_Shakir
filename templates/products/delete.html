@@ -6,5 +6,5 @@
     <h3>Удалить <i class="text-danger">{{ product.name }}</i> из корзины ?</h3>
     <button type="submit" class="btn btn-success p-3  mb-2  " >Да</button>
 </form>
-<a href="{% url "index" %}" class="btn btn-danger p-3"  role="button"  >Нет</a>
+<a href="{% url "shop:index" %}" class="btn btn-danger p-3"  role="button"  >Нет</a>
 {% endblock %}

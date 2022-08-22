@@ -1,8 +1,10 @@
+from django.conf.urls.static import static
 from django.urls import path
 
+from django.conf import settings
 from shop.views.products import DeleteProduct, IndexView, ProductView, CreateProduct, UpdateProduct, ProductAdd, \
     CartView, DeleteCart, OrderCreateView
-
+app_name = 'shop'
 urlpatterns = [
     path('', IndexView.as_view(), name="index"),
     path('product/<int:pk>/', ProductView.as_view(), name="view"),
@@ -15,3 +17,4 @@ urlpatterns = [
     path('order/create/', OrderCreateView.as_view(), name="order_create")
 
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

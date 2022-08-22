@@ -65,7 +65,7 @@ class UpdateProduct(UpdateView):
 class DeleteProduct(DeleteView):
     model = Product
     template_name = 'products/delete.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('shop:index')
 
 
 class ProductAdd(CreateView):
@@ -91,7 +91,7 @@ class ProductAdd(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('index')
+        return reverse('shop:index')
 
 
 class CartView(ListView):
@@ -121,7 +121,7 @@ class DeleteCart(DeleteView):
 class OrderCreateView(CreateView):
     model = Order
     form_class = OrderForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('shop:index')
 
     def form_valid(self, form):
         order = form.save()
