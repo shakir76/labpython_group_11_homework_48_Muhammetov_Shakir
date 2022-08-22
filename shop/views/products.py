@@ -27,7 +27,7 @@ class IndexView(ListView):
         if self.search_value:
             return Product.objects.filter(
                 Q(name__icontains=self.search_value) | Q(category__icontains=self.search_value))
-        return Product.objects.all()
+        return Product.objects.all().order_by(('category'), ('name'))
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
@@ -81,7 +81,11 @@ class ProductAdd(CreateView):
             try:
                 cart = ProductInCart.objects.get(product=product)
                 cart.balance += qty
-                cart.save()
+                if product.balance < cart.balance:
+                    cart.balance -= qty
+                    cart.save()
+                else:
+                    cart.save()
             except ProductInCart.DoesNotExist:
                 ProductInCart.objects.create(product=product, balance=qty)
         return HttpResponseRedirect(self.get_success_url())
