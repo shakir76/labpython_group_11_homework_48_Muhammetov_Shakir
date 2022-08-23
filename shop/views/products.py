@@ -160,8 +160,11 @@ class OrderCreateView(CreateView):
     success_url = reverse_lazy('shop:index')
 
     def form_valid(self, form):
-        order = form.save()
         user = self.request.user
+        order = form.save(commit=False)
+        if user.is_authenticated:
+            order.user = user
+        order = form.save()
 
         cart = self.request.session.get('cart')
         context = []
@@ -173,10 +176,7 @@ class OrderCreateView(CreateView):
             context.append(product)
 
         for i in context:
-            if user.is_authenticated:
-                OrderProduct.objects.create(product=i, balance=i.balance, order=order, user=user)
-            else:
-                OrderProduct.objects.create(product=i, balance=i.balance, order=order)
+            OrderProduct.objects.create(product=i, balance=i.balance, order=order)
             for a in cart:
                 if i.pk == a['name']:
                     cart.remove(a)
@@ -185,3 +185,9 @@ class OrderCreateView(CreateView):
                 product.save()
         self.request.session['cart'] = cart
         return HttpResponseRedirect(self.success_url)
+
+
+class OrderListView(ListView):
+    model = Order
+    template_name = 'order_listview.html'
+    context_object_name = 'order'

@@ -52,6 +52,8 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     products = models.ManyToManyField('shop.Product', related_name='orders', verbose_name='Товары',
                                       through='shop.OrderProduct', through_fields=['order', 'product'])
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True, related_name="users",
+                              verbose_name="Пользователь")
 
     def __str__(self):
         return f'{self.name} - {self.phone}'
@@ -68,8 +70,7 @@ class OrderProduct(models.Model):
     order = models.ForeignKey("shop.Order", on_delete=models.CASCADE, related_name="order_products",
                               verbose_name="Продукт")
     balance = models.PositiveIntegerField(verbose_name="Количество")
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True, related_name="users",
-                              verbose_name="Пользователь")
+
 
     def __str__(self):
         return f'{self.product.name} - {self.order.name}'

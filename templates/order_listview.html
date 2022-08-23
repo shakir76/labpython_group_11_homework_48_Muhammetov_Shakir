@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <H2>Заказы</H2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Наименования</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Сумма</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in cart %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.balance }}</td>
+                <td>{{ i.price }}</td>
+                {% for a in sums %}
+                    {% if a.product_id == i.pk  %}
+                    <td>{{ a.sum_price }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td><a href="{% url "shop:cart_delete" i.pk %}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <H5> Общая сумма:{{ sum_product }} </H5>
+    <form action="{% url 'shop:order_create' %}" method="post">
+        {% include 'partial/form.html' with button_text='Заказать' %}
+    </form>
+{% endblock %}
