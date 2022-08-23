@@ -17,7 +17,7 @@
     "name": "product3",
     "description": "13dad",
     "category": "block",
-    "balance": 2,
+    "balance": 0,
     "price": "12312.00"
   }
 },
@@ -39,7 +39,7 @@
     "name": "block 12",
     "description": "123asd",
     "category": "block",
-    "balance": 4,
+    "balance": 1,
     "price": "5214.00"
   }
 },
@@ -50,7 +50,7 @@
     "name": "product4",
     "description": "dsfad",
     "category": "matrix",
-    "balance": 6,
+    "balance": 0,
     "price": "3212.00"
   }
 },
@@ -61,8 +61,30 @@
     "name": "Enhancement",
     "description": "ddqww",
     "category": "other",
-    "balance": 6,
+    "balance": 1,
     "price": "56456.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 26,
+  "fields": {
+    "name": "product23",
+    "description": "фыв",
+    "category": "block",
+    "balance": 39,
+    "price": "12.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 27,
+  "fields": {
+    "name": "Klaviatura asus",
+    "description": "qe",
+    "category": "keyboard",
+    "balance": 11,
+    "price": "123.00"
   }
 },
 {
@@ -72,7 +94,8 @@
     "name": "Белосан Зэнер Исмазовна",
     "phone": "awe",
     "address": "eqw",
-    "created_at": "2022-08-06T09:40:03.138Z"
+    "created_at": "2022-08-06T09:40:03.138Z",
+    "user": null
   }
 },
 {
@@ -82,7 +105,8 @@
     "name": "Белосан Зэнер Исмазовна",
     "phone": "sad",
     "address": "asd",
-    "created_at": "2022-08-06T09:41:27.159Z"
+    "created_at": "2022-08-06T09:41:27.159Z",
+    "user": null
   }
 },
 {
@@ -92,7 +116,8 @@
     "name": "Белосан Зэнер Исмазовна",
     "phone": "+996703783736",
     "address": "фыв",
-    "created_at": "2022-08-22T08:35:56.109Z"
+    "created_at": "2022-08-22T08:35:56.109Z",
+    "user": null
   }
 },
 {
@@ -102,7 +127,162 @@
     "name": "block 131",
     "phone": "1",
     "address": "фыв",
-    "created_at": "2022-08-22T08:38:02.069Z"
+    "created_at": "2022-08-22T08:38:02.069Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 5,
+  "fields": {
+    "name": "Enhancement",
+    "phone": "вфыв",
+    "address": "фыв",
+    "created_at": "2022-08-22T16:07:32.402Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 6,
+  "fields": {
+    "name": "block 131",
+    "phone": "вфыв",
+    "address": "фыв",
+    "created_at": "2022-08-22T16:09:14.848Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 7,
+  "fields": {
+    "name": "Белосан Зэнер Исмазовна",
+    "phone": "+996703783736",
+    "address": "eqw",
+    "created_at": "2022-08-22T16:12:05.114Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 8,
+  "fields": {
+    "name": "new",
+    "phone": "awe",
+    "address": "фыв",
+    "created_at": "2022-08-23T03:42:34.774Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 9,
+  "fields": {
+    "name": "Белосан Зэнер Исмазовна",
+    "phone": "+996703783736",
+    "address": "12",
+    "created_at": "2022-08-23T03:43:51.272Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 10,
+  "fields": {
+    "name": "block 131",
+    "phone": "+996703783736",
+    "address": "фыв",
+    "created_at": "2022-08-23T03:44:47.121Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 11,
+  "fields": {
+    "name": "shkair",
+    "phone": "9965516382",
+    "address": "nen",
+    "created_at": "2022-08-23T03:48:59.753Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 12,
+  "fields": {
+    "name": "dsadadasd",
+    "phone": "+996703783736",
+    "address": "фыв",
+    "created_at": "2022-08-23T03:49:35.917Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 13,
+  "fields": {
+    "name": "Белосан Зэнер Исмазовна",
+    "phone": "+996703783736",
+    "address": "фыв",
+    "created_at": "2022-08-23T04:00:17.843Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 14,
+  "fields": {
+    "name": "Белосан Зэнер Исмазовна",
+    "phone": "+996703783736",
+    "address": "фыв",
+    "created_at": "2022-08-23T04:19:31.830Z",
+    "user": 1
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 15,
+  "fields": {
+    "name": "block 131",
+    "phone": "+996703783736",
+    "address": "121",
+    "created_at": "2022-08-23T04:19:49.368Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 16,
+  "fields": {
+    "name": "manager",
+    "phone": "99650514124",
+    "address": "kt,tlb==d",
+    "created_at": "2022-08-23T04:47:18.062Z",
+    "user": 2
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 17,
+  "fields": {
+    "name": "dsadadasd",
+    "phone": "вфыв",
+    "address": "фыв",
+    "created_at": "2022-08-23T04:57:53.742Z",
+    "user": null
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 18,
+  "fields": {
+    "name": "block 131",
+    "phone": "+996703783736",
+    "address": "фыв",
+    "created_at": "2022-08-23T04:58:06.321Z",
+    "user": 1
   }
 },
 {
@@ -192,6 +372,186 @@
   "fields": {
     "product": 20,
     "order": 4,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 11,
+  "fields": {
+    "product": 23,
+    "order": 5,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 12,
+  "fields": {
+    "product": 22,
+    "order": 5,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 13,
+  "fields": {
+    "product": 20,
+    "order": 5,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 14,
+  "fields": {
+    "product": 22,
+    "order": 6,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 15,
+  "fields": {
+    "product": 23,
+    "order": 6,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 16,
+  "fields": {
+    "product": 22,
+    "order": 7,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 17,
+  "fields": {
+    "product": 23,
+    "order": 7,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 18,
+  "fields": {
+    "product": 26,
+    "order": 8,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 19,
+  "fields": {
+    "product": 26,
+    "order": 9,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 20,
+  "fields": {
+    "product": 26,
+    "order": 10,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 21,
+  "fields": {
+    "product": 26,
+    "order": 11,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 22,
+  "fields": {
+    "product": 26,
+    "order": 12,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 23,
+  "fields": {
+    "product": 26,
+    "order": 14,
+    "balance": 2
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 24,
+  "fields": {
+    "product": 26,
+    "order": 15,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 25,
+  "fields": {
+    "product": 26,
+    "order": 16,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 26,
+  "fields": {
+    "product": 27,
+    "order": 16,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 27,
+  "fields": {
+    "product": 23,
+    "order": 16,
+    "balance": 2
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 28,
+  "fields": {
+    "product": 24,
+    "order": 16,
+    "balance": 3
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 29,
+  "fields": {
+    "product": 26,
+    "order": 17,
+    "balance": 1
+  }
+},
+{
+  "model": "shop.orderproduct",
+  "pk": 30,
+  "fields": {
+    "product": 26,
+    "order": 18,
     "balance": 1
   }
 }
