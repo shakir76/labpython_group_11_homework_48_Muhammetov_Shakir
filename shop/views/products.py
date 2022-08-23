@@ -131,7 +131,6 @@ class CartView(ListView):
         for i in context['cart']:
             sum_product.append(i.balance * i.price)
             susm.append({'product_id': i.pk, 'sum_price': (i.balance * i.price)})
-        print(susm)
         context['sums'] = susm
         sum_product = sum(sum_product)
         context['sum_product'] = sum_product
@@ -162,6 +161,7 @@ class OrderCreateView(CreateView):
 
     def form_valid(self, form):
         order = form.save()
+        user = self.request.user
 
         cart = self.request.session.get('cart')
         context = []
@@ -173,7 +173,10 @@ class OrderCreateView(CreateView):
             context.append(product)
 
         for i in context:
-            OrderProduct.objects.create(product=i, balance=i.balance, order=order)
+            if user.is_authenticated:
+                OrderProduct.objects.create(product=i, balance=i.balance, order=order, user=user)
+            else:
+                OrderProduct.objects.create(product=i, balance=i.balance, order=order)
             for a in cart:
                 if i.pk == a['name']:
                     cart.remove(a)
