@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,8 +8,8 @@ from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from shop.forms import ProductForm, SearchForm, ProductAddForm, OrderForm
-from shop.models import Product, ProductInCart, Order, OrderProduct
+from shop.forms import ProductForm, SearchForm, OrderForm, ProductAddForm
+from shop.models import Product,  Order, OrderProduct
 
 
 class IndexView(ListView):
@@ -187,7 +187,10 @@ class OrderCreateView(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
-class OrderListView(ListView):
+class OrderListView(LoginRequiredMixin, ListView):
     model = Order
     template_name = 'order_listview.html'
     context_object_name = 'order'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)

@@ -24,6 +24,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url "shop:cart" %}">Корзина</a>
                 </li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "shop:order_list" %}">Заказы</a>
+                    </li>
+                {% endif %}
                 {% block nav %}
                 {% endblock %}
                 {% if request.user.is_authenticated %}
