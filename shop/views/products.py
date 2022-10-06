@@ -1,5 +1,5 @@
 # import telebot
-import telegram_send
+# import telegram_send
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -12,8 +12,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from shop.forms import ProductForm, SearchForm, OrderForm, ProductAddForm
 from shop.models import Product, Order, OrderProduct
-
-
 
 
 class IndexView(ListView):
@@ -189,15 +187,10 @@ class OrderCreateView(CreateView):
                 product.save()
         self.request.session['cart'] = cart
 
-        phone = form.instance.phone
-        name = form.instance.name
-        adress = form.instance.address
-
-        telegram_send.send(messages=[f"""Новый заказ:
-            Имя: {name},
-            Телефон: {phone},
-            Адресс: {adress}"""])
-
+        # telegram_send.send(messages=[f"""Новый заказ:
+        #     Имя: {name},
+        #     Телефон: {phone},
+        #     Адресс: {adress}"""])
 
         # bot = telebot.TeleBot('5734377640:AAHZgjRRicZjNdfxX-2dc2ogSVG8Mcx0esk')
         #

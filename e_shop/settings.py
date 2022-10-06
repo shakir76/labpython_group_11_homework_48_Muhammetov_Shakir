@@ -99,7 +99,7 @@ DATABASES = {
 #         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
 #     },
 # ]
-
+TELEGRAM_BOT_API_KEY = '5734377640:AAHZgjRRicZjNdfxX-2dc2ogSVG8Mcx0esk'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
